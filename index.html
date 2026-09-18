@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kalkulator Pricelist Karton</title>
+<style>
+:root{--bg:#f4f7f5;--card:#fff;--text:#173129;--muted:#6b7f77;--line:#dbe5e1;--brand:#0b6b4b;--red:#d94b4b;--redbg:#fff1f1;--green:#62a765;--greenbg:#effbef}*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#f8fbf9,#f2f6f4);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text)}main{width:min(1120px,calc(100% - 24px));margin:auto;padding:36px 0 56px}.hero{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:22px}.eyebrow{margin:0 0 6px;color:var(--brand);font-size:.78rem;font-weight:800;letter-spacing:.12em}h1{margin:0 0 8px;font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.045em;line-height:1.03}.desc{max-width:700px;margin:0;color:var(--muted);line-height:1.65}.legend{display:flex;gap:14px;flex-wrap:wrap;padding:11px 14px;background:#fff;border:1px solid var(--line);border-radius:14px;color:var(--muted);font-size:.84rem;white-space:nowrap}.dot{display:inline-block;width:9px;height:9px;border-radius:99px;margin-right:6px}.red{background:var(--red)}.green{background:var(--green)}.card{margin-top:16px;padding:24px;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 15px 45px rgba(30,70,55,.08)}.head{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:18px}.head h2{margin:0;font-size:1.28rem}.step{margin:0 0 4px;color:var(--brand);font-size:.74rem;font-weight:900;letter-spacing:.12em}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.spec{grid-template-columns:2fr 1fr 1fr}.field{display:flex;flex-direction:column;gap:8px;min-width:0;padding:15px;border:1px solid;border-radius:16px}.field>span{font-size:.82rem;font-weight:800}.input{background:var(--redbg);border-color:#efb3b3}.input:focus-within{border-color:var(--red);box-shadow:0 0 0 4px rgba(217,75,75,.08)}.output{background:var(--greenbg);border-color:#b7d8b8}.field small{color:var(--muted);font-size:.73rem;line-height:1.4}input,select{width:100%;min-height:42px;border:0;outline:0;background:transparent;color:var(--text);font:700 1rem inherit}output{display:block;min-height:42px;padding-top:8px;font-size:1.18rem;font-weight:850}.row{display:flex;align-items:center;gap:8px}.unit{color:var(--muted);font-size:.82rem;font-weight:800}.price{color:#07583a;font-size:1.35rem}.final{border-width:2px;background:linear-gradient(135deg,#e3f8e7,#f8fff9)}.final output{font-size:1.6rem;color:#075b36}.actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}button{min-height:43px;padding:0 15px;border:0;border-radius:12px;font-weight:800;cursor:pointer}.primary{background:var(--brand);color:#fff}.secondary{background:#edf2f0;color:#334c43}.tableWrap{overflow:auto;border:1px solid var(--line);border-radius:14px}table{width:100%;min-width:900px;border-collapse:collapse}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:center;font-size:.82rem}th{position:sticky;top:0;background:#173e31;color:#fff}tbody tr:nth-child(even){background:#fafcfb}td.p{font-weight:750;font-variant-numeric:tabular-nums}.note{margin:0;color:var(--muted);font-size:.78rem}.footer{margin:16px 0 0;text-align:center;color:var(--muted);font-size:.75rem}@media(max-width:850px){.hero{align-items:flex-start;flex-direction:column}.grid,.spec{grid-template-columns:repeat(2,1fr)}.wide{grid-column:1/-1}}@media(max-width:580px){main{padding-top:24px}.card{padding:17px;border-radius:18px}.grid,.spec{grid-template-columns:1fr}.wide{grid-column:auto}.actions{flex-direction:column-reverse}button{width:100%}.head{align-items:flex-start;flex-direction:column}.legend{white-space:normal;width:100%}}
+</style>
+</head>
+<body>
+<main>
+<section class="hero"><div><p class="eyebrow">PRICE CALCULATOR</p><h1>Kalkulator Pricelist Karton</h1><p class="desc">Pilih substance dan spec material, masukkan ukuran, lalu harga dihitung otomatis mengikuti rumus pada file Excel.</p></div><div class="legend"><span><i class="dot red"></i>Input manual</span><span><i class="dot green"></i>Otomatis</span></div></section>
+
+<section class="card"><div class="head"><div><p class="step">01</p><h2>Spesifikasi Material</h2></div></div><div class="grid spec">
+<label class="field input wide"><span>Substance</span><select id="substance"></select></label>
+<label class="field input"><span>Spec Material</span><select id="spec"><option>BF</option><option>CF</option><option>AF</option><option selected>BC/F</option><option>BA/F</option><option>E/F</option></select></label>
+<label class="field output"><span>Harga Pricelist</span><output id="price" class="price">-</output><small>Berdasarkan substance + spec material.</small></label>
+</div></section>
+
+<section class="card"><div class="head"><div><p class="step">02</p><h2>Ukuran Karton</h2></div></div><div class="grid">
+<label class="field input"><span>Panjang</span><div class="row"><input id="panjang" type="number" min="0" step="0.1" value="18"><b class="unit">cm</b></div></label>
+<label class="field input"><span>Lebar</span><div class="row"><input id="lebar" type="number" min="0" step="0.1" value="18"><b class="unit">cm</b></div></label>
+<label class="field input"><span>Tinggi</span><div class="row"><input id="tinggi" type="number" min="0" step="0.1" value="28.5"><b class="unit">cm</b></div></label>
+<label class="field output"><span>P × L</span><output id="pxl">-</output><small>(Panjang + Lebar) × 2 + 4</small></label>
+<label class="field output"><span>L</span><output id="nilaiL">-</output><small>Lebar + 0,6 + Tinggi</small></label>
+<label class="field output"><span>Lebar Kertas</span><output id="lebarKertas">-</output><small>L × 3, dibulatkan ke atas kelipatan 5</small></label>
+</div></section>
+
+<section class="card"><div class="head"><div><p class="step">03</p><h2>Perhitungan Harga</h2></div></div><div class="grid">
+<label class="field output"><span>Harga Dasar</span><output id="hargaDasar">-</output><small>(Lebar Kertas × P×L × Pricelist ÷ 10.000) ÷ 3</small></label>
+<label class="field input"><span>Diskon</span><div class="row"><input id="diskon" type="number" min="0" max="100" step="0.1" value="3"><b class="unit">%</b></div></label>
+<label class="field output"><span>Harga Diskon</span><output id="hargaDiskon">-</output><small>Harga Dasar − diskon</small></label>
+<label class="field output"><span>Harga Sesudah PPN</span><output id="hargaPPN">-</output><small>PPN 10%</small></label>
+<label class="field input"><span>Margin</span><div class="row"><input id="margin" type="number" min="0" step="0.1" value="40"><b class="unit">%</b></div></label>
+<div class="field output final"><span>Harga Jual</span><output id="hargaJual">-</output><small>Harga setelah PPN + margin</small></div>
+</div><div class="actions"><button id="reset" class="secondary">Reset contoh</button><button id="toggle" class="primary" aria-expanded="false">Lihat Pricelist</button></div></section>
+
+<section class="card" id="tableCard" hidden><div class="head"><div><p class="step">DATA</p><h2>Pricelist Material</h2></div><p class="note">Nominal ribuan sesuai Excel.</p></div><div class="tableWrap"><table><thead><tr><th>No</th><th colspan="3">Substance</th><th>BF</th><th>CF</th><th>AF</th><th>BC/F</th><th>BA/F</th><th>E/F</th></tr></thead><tbody id="tbody"></tbody></table></div></section>
+<p class="footer">Rumus mengikuti workbook Harga Karton.xlsx.</p>
+</main>
+<script>
+const cols=['BF','CF','AF','BC/F','BA/F','E/F'];
+const data=[
+[1,['M 125','M125','M 125'],[4283,4380,5800,7252,8752,4483]],
+[2,['K 125','M125','M 125'],[4410,4508,6008,7379,8879,4610]],
+[3,['K 125','M125','K 125'],[4537,4635,6135,7507,9007,4737]],
+[4,['K 150','M125','M 125'],[4631,4729,6229,7600,9100,4831]],
+[5,['K 150','M125','K 125'],[4758,4856,6356,7728,9228,4958]],
+[6,['K 150','M125','K 150'],[4979,5077,6577,7948,9448,5179]],
+[7,['K 200','M125','M 125'],[5268,5369,6869,8351,9851,5468]],
+[8,['K 200','M125','K 125'],[5400,5501,7001,8483,9983,5600]],
+[9,['K 200','M125','K 150'],[5629,5731,7231,8713,10713,5829]],
+[10,['K 200','M125','K 200'],[6088,6189,7689,9171,10671,6288]],
+[11,['K 275','M125','M 125'],[6528,6634,8134,9726,11226,6728]],
+[12,['K 275','M125','K 125'],[6666,6771,8271,9863,11363,6866]],
+[13,['K 275','M125','K 150'],[6903,7009,8509,10101,11601,7103]],
+[14,['K 275','M125','K 200'],[7379,7484,8984,10577,12077,7579]],
+[15,['K 275','M125','K 275'],[8746,8855,10355,12058,13558,8946]],
+[16,['W 150','M125','M 125'],[5153,5254,6754,8236,9736,5353]],
+[17,['W 150','M125','K 125'],[5285,5387,6887,8369,9869,5485]],
+[18,['W 150','M125','K 150'],[5515,5616,7116,8598,10098,5715]],
+[19,['W 150','M125','K 200'],[5973,6075,7575,9057,10557,6173]],
+[20,['W 150','M125','K 275'],[7260,7365,8865,10458,11958,7460]],
+[21,['W 150','M125','W 150'],[6293,6402,7902,9605,11105,6493]],
+[22,['W 200','M125','M 125'],[5726,5828,7328,8810,10310,5926]],
+[23,['W 200','M125','K 125'],[5859,5960,7460,8942,10442,6059]],
+[24,['W 200','M125','K 150'],[6088,6189,7689,9171,10671,6288]],
+[25,['W 200','M125','K 200'],[6547,6648,8148,9630,11130,6747]],
+[26,['W 200','M125','K 275'],[7855,7960,9460,11053,12553,8055]],
+[27,['W 200','M125','W 150'],[6908,7017,8517,10220,11720,7108]],
+[28,['W 200','M125','W 200'],[7524,7633,9133,10836,12336,7724]]
+];
+const $=id=>document.getElementById(id), ids=['substance','spec','panjang','lebar','tinggi','diskon','margin'], nf=new Intl.NumberFormat('id-ID',{maximumFractionDigits:4}), inf=new Intl.NumberFormat('id-ID'), money=new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:2});
+const label=r=>r[1].map(x=>x.replace(/\s+/g,'')).join(' / ');
+$('substance').innerHTML=data.map(r=>`<option value="${r[0]}">${label(r)}</option>`).join('');$('substance').value='3';
+$('tbody').innerHTML=data.map(r=>`<tr><td>${r[0]}</td>${r[1].map(x=>`<td>${x}</td>`).join('')}${r[2].map(x=>`<td class="p">${inf.format(x)}</td>`).join('')}</tr>`).join('');
+function n(id){const v=parseFloat($(id).value);return Number.isFinite(v)?v:0}
+function calc(){const row=data.find(r=>String(r[0])===$('substance').value),ci=cols.indexOf($('spec').value),unit=row&&ci>=0?row[2][ci]:null,p=n('panjang'),l=n('lebar'),t=n('tinggi'),disc=Math.max(0,n('diskon'))/100,mar=Math.max(0,n('margin'))/100,pxl=(p+l)*2+4,nl=l+.6+t,lk=Math.ceil((nl*3)/5)*5;$('pxl').textContent=nf.format(pxl);$('nilaiL').textContent=nf.format(nl);$('lebarKertas').textContent=nf.format(lk);if(!Number.isFinite(unit)){['price','hargaDasar','hargaDiskon','hargaPPN','hargaJual'].forEach(id=>$(id).textContent='-');return}$('price').textContent=inf.format(unit);const hd=(lk*pxl*unit/10000)/3,hdis=hd-(hd*disc),ppn=hdis*1.1,hj=ppn+(ppn*mar);$('hargaDasar').textContent=money.format(hd);$('hargaDiskon').textContent=money.format(hdis);$('hargaPPN').textContent=money.format(ppn);$('hargaJual').textContent=money.format(hj)}
+ids.forEach(id=>{ $(id).addEventListener('input',calc);$(id).addEventListener('change',calc)});
+$('reset').onclick=()=>{$('substance').value='3';$('spec').value='BC/F';$('panjang').value=18;$('lebar').value=18;$('tinggi').value=28.5;$('diskon').value=3;$('margin').value=40;calc()};
+$('toggle').onclick=()=>{const c=$('tableCard'),open=c.hidden;c.hidden=!open;$('toggle').textContent=open?'Sembunyikan Pricelist':'Lihat Pricelist';$('toggle').setAttribute('aria-expanded',String(open));if(open)c.scrollIntoView({behavior:'smooth'})};
+calc();
+</script>
+</body>
+</html>
